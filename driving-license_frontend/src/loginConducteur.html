@@ -27,7 +27,7 @@
               <div class="input-icons mb-4 ">
                 <i class="fa fa-user icon"></i>
 
-                <input type="text" name="login" id="login" required class="input-field-login" placeholder="login" >
+                <input type="text" name="login" id="login" required class="input-field-login" placeholder="matricule" >
 
               </div>
               <div class="input-icons mb-4">
@@ -37,9 +37,11 @@
 
               </div>
             </div>
-           <button type="button" onclick="signin()"  class="button1" style="width: 65%;outline: none;">Log in</button>
+           <button type="button" onclick="SignInConducteur()"  class="button1" style="width: 65%;outline: none;">Log in</button>
+           <p class="text-whitesmoke text-center"><small>Do not have an account?</small></p>
+           <a class="text-darkyellow" href="register.html"><small> Sign Up</small></a>  
            <p class="text-whitesmoke text-center"><small>Sign in Such as</small></p>
-           <a class="text-darkyellow" href="loginConducteur.html"><small> Conducteur</small></a>
+           <a class="text-darkyellow" href="login.html"><small>  Admin</small></a>
           </form>
         </center>
       </div>
@@ -51,8 +53,8 @@
 
 
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<script src="../src/js/Admin.js"></script>
 
+<script src="../src/js/Conducteur.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 
 </html>

@@ -4,7 +4,7 @@ const ConducteurController = require('../controllers/Conducteur.controller');
 
 
 router.post('/authentication', ConducteurController.addConducteur)
-router.put('/activateCompte/:token', ConducteurController.activateCompteConducteur)
+router.get('/activateCompte/:token', ConducteurController.activateCompteConducteur)
 router.post('/loginConducteur', ConducteurController.loginConducteur)
 router.get('/logout', ConducteurController.logout);
 

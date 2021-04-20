@@ -15,25 +15,46 @@
 <body>
   <div class="container mt-5">
 
-    <div class="row" style="margin-top: 7rem;">
+    <div class="row" style="margin-top: 4rem;">
 
-      <div class="col-12 col-md-12 col-lg-6 "><img src="pics/register.svg" class="rounded float-start  ml-5"></div>
+      <div class="col-12 col-md-12 col-lg-6 "><img src="pics/register.svg" class="rounded float-start  ml-5" style="margin-top: 12%;"></div>
       <div class="col-12 col-md-12 col-lg-6 form">
         <center style="margin-top: 20%;">
             <img src="pics/logo.png" style="margin-top: -15%; width: 140px;"> 
 
           <form action="" method="" class="py-5">
-            <div class="col-lg-8 mt-5 mx-auto">
-              <div class="input-icons mb-4 "><i class="fa fa-user icon"></i><input type="text"
-                  class="input-field" placeholder="User Name" required id="user">
+
+              <div class="input-icons mb-4">
+                <input  class="input-field" type="text" name="fullName" id="fullName" placeholder="FullName" required />
+      
+                <input  class="input-field" type="text" name="matricule" id="matricule" placeholder="Matricule" required />
               </div>
-              <div class="input-icons mb-4"><i class="fas fa-lock icon"></i><input type="password" 
-                  class="input-field" placeholder="Password" required id="password">
-              </div>
-            </div>
-           <button type="button" id="login" class="button1" style="width: 65%;outline: none;">login</button>
+
+
+
+    
+                  <div class="input-icons mb-4"> 
+                    <input  class="input-field" type="text" name="telephone" id="telephone" placeholder="Telephone" />
+                
+                    <input  class="input-field" type="text" name="adresse" id="adresse" placeholder="Adresse" required />
+                  </div>
+       
+               
+  
+                  <div class="input-icons mb-4"> 
+                    <input  class="input-field" type="email" name="email" id="email" placeholder="Email" />
+ 
+                    <input  class="input-field" type="password" name="password" id="password" placeholder="Password" required />
+                  </div>
+
+                  <div class="input-icons mb-4"> 
+                    <input  class="input-field" type="text" name="numero_de_Permis" id="numero_de_Permis" placeholder="Numero_de_Permis" />                   
+                  </div>
+
+            
+           <button type="button" onclick="register()" class="button1" style="width: 65%;outline: none;">Register</button>
            <p class="text-whitesmoke text-center"><small>I have aleready an account?</small></p>
-           <a class="text-darkyellow" href="login.html"><small>Sign in</small></a>
+           <a class="text-darkyellow" href="loginConducteur.html"><small>Sign in</small></a>
           </form>
         </center>
       </div>
@@ -43,7 +64,8 @@
  </div>
 </body>
 
-<script src="../src/js/login.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="../src/js/Conducteur.js"></script>
 
 
 

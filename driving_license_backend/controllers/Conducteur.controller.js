@@ -39,6 +39,10 @@ const addConducteur = async (req, res) => {
           const telephone = req.body.telephone;         
           const adresse = req.body.adresse;
           const numero_de_Permis = req.body.numero_de_Permis; 
+          const nombre_de_Point = "30";
+          const validateCompte = false;
+          const infraction = "NO infraction yet"
+         
           const ConducteurPush = new Conducteur({
               matricule,
               fullName,
@@ -49,8 +53,7 @@ const addConducteur = async (req, res) => {
               numero_de_Permis,
               nombre_de_Point,                 
               validateCompte,
-              role            
-     
+              infraction
           });
            ConducteurPush
           
@@ -75,7 +78,7 @@ const addConducteur = async (req, res) => {
             subject: "Email Activated Account",
             html: `
             <h2>Please click on below link to activate your account</h2>
-            <p>https://react-app-marketplace.herokuapp.com/Customer/activateCompte/${token}</p>
+            <p>http://localhost:3030/Conducteur/activateCompte/${token}</p>
         `
         })
     
@@ -93,7 +96,7 @@ const addConducteur = async (req, res) => {
        await Conducteur.findOneAndUpdate({ matricule: matricule },{validateCompte : true});
     
        res.json({
-               message : "ok"
+               message : "your account validated succeffully"
        });
     }
     
@@ -136,10 +139,10 @@ const addConducteur = async (req, res) => {
                   res.json({
                          validateCompte
                     })
-              }if(Conducteur.role != "Conducteur"){
-                res.json({
-                  role: Conducteur.role
-                  })
+              // }if(Conducteur.role != "Conducteur"){
+              //   res.json({
+              //     role: Conducteur.role
+              //     })
             }else{
   
               let token = jwt.sign({
@@ -149,7 +152,7 @@ const addConducteur = async (req, res) => {
                   // res.cookie("role", role)
                   res.json({
                     token: token,
-                    role: Conducteur.role
+                    _id: Conducteur._id
                   })
                 })
               }
@@ -166,6 +169,8 @@ const addConducteur = async (req, res) => {
           }
         }).catch((err) => res.status(400).json("Error :" + err));
     }
+
+
    //-------------------------logout Customer and remove token-----------------------------   
    const logout = (req, res) => {
       const deconnect = res.clearCookie("token")

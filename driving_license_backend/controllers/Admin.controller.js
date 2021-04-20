@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
+const nodemailer = require("nodemailer");
 const Admin = require('../models/Admin.model');
 const Conducteur = require('../models/Conducteur.model');
 
@@ -41,7 +42,7 @@ const addAdmin = (req, res) => {
           });
           AdminPush
             .save()
-            .then(() => res.json("SupperAdmin authentication successfully"))
+            .then(() => res.json("Admin authentication successfully"))
             .catch((err) => res.status(400).json("Error :" + err));
         });
         }
@@ -111,43 +112,83 @@ const updateConducteur = async(req, res) => {
     Conducteur.updateOne({
         _id: req.params.id
       }, {
-        nombre_de_Point: req.body.nombre_de_Point
+        nombre_de_Point: req.body.nombre_de_Point,
+        infraction:req.body.infraction
       })
-      .then(() => res.status(201).json("Conducteur Confirmed successfully"))
+      .then(() => res.status(201))
       .catch((err) => res.status(400).json("Error :" + err));
+
+        Conducteur.findById(req.params.id)
+            .then(Conducteur => {
+              res.status(200).json(Conducteur.email);
+              email = Conducteur.email;
+             
+          // send notification in email
       const transport = nodemailer.createTransport({
+ 
         service: "gmail",
             auth: {
                 user: 'elhanchaoui.emailtest@gmail.com',//email
                 pass: 'Taoufiq@2020'//password
             }
         })
-        
-        await transport.sendMail({
+        // email = Conducteur.email;
+        transport.sendMail({
             from: 'elhanchaoui.emailtest@gmail.com',
-            to: req.body.email,
+            to:email ,
             subject: "Nombre de Point",
             html: `<div className="email" style="
-            border: 1px solid black;
+            border: 1px solid red;
             padding: 20px;
             font-family: sans-serif;
             line-height: 2;
-            font-size: 20px; 
+            font-size: 20px;
+            text-align: center; 
+            color:red;
             ">
             <h2>We sorry to know that</h2>
-            <p>Your Point changed to ${req.body.nombre_de_Point}<p>
-            <p>Pease pay attention<p>
+            <h4>Your Point changed to ${req.body.nombre_de_Point}</h4>
+            <h4>Because of ${req.body.infraction}</h4>
+            <p>Please pay attention<p>
              </div>
         `
         })
+      })
   };
   
+      //-------------------------get All Conducteur-----------------------------   
   
+      const getAllConducteur = (req, res) => {
+        Conducteur.find()
+          .then(ConducteurInfos => {
+            res.status(200).json(ConducteurInfos);
+          }).catch(error => {
+            console.log(error);
+            res.status(500).json({
+              message: "Error!",
+              error: error
+            });
+          });
+      }; 
+        //-------------------------get All Admin-----------------------------   
   
+        const getAdmin = (req, res) => {
+          Admin.find()
+            .then(Admin => {
+              res.status(200).json(Admin);
+            }).catch(error => {
+              console.log(error);
+              res.status(500).json({
+                message: "Error!",
+                error: error
+              });
+            });
+        }; 
+    
   // ______________________get conductor by id__________________
   const getConductorById = (req, res) => {
     Conducteur.findById(req.params.id)
-        .then(Delivery => {
+        .then(Conducteur => {
           res.status(200).json(Conducteur);
         }).catch(err => {
             if(err.kind === 'ObjectId') {
@@ -161,7 +202,8 @@ const updateConducteur = async(req, res) => {
                 error: err
             });
         });
-  };      
+  };  
+   
 module.exports={
-        addAdmin,loginAdmin,logout,updateConducteur,getConductorById
+        addAdmin,loginAdmin,logout,updateConducteur,getConductorById,getAllConducteur,getAdmin
 };

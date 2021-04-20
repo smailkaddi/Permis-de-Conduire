@@ -35,35 +35,44 @@ body {
 	width: 100%;
 	margin-bottom: 10px;
 	border: none;
-	border-color: #c3953f;
+	border-color: #32738F;
 
 }
 
 .icon {
 	padding: 10px;
-	color: #FE4400;
+	color: #32738F;
 	min-width: 50px;
 	text-align: center;
 }
 
 .input-field {
-	width: 100%;
+	width: 49%;
 	padding: 10px;
 	text-align: center;
-	border-color: #c3953f;
+	border-color: #32738F;
 	border-radius: 20px;
 	box-sizing: border-box;
 	border: none;
 	OUTLINE: none;
 }
-
+.input-field-login{
+	width: 100%;
+	padding: 10px;
+	text-align: center;
+	border-color: #32738F;
+	border-radius: 20px;
+	box-sizing: border-box;
+	border: none;
+	OUTLINE: none;
+}
 h2 {
 	color: white;
 }
 
 .button1 {
 
-	background-color: #FE4400;
+	background-color: #32738F;
 	color: white;
 	padding: 10px 20px;
 	margin: 8px 0;
@@ -73,16 +82,16 @@ h2 {
 }
 
 .button1:hover {
-	background-color: #c3953f;
+	background-color: #5DA8C8;
 }
 
 .iconAdmin {
-	color: #c3953f;
+	color: #32738F;
 	font-size: 60px;
 }
 
 .iconAdmin:hover {
-	color: #ffc107;
+	color: #32738F;
 }
 
 .form {
@@ -198,6 +207,8 @@ a{
     font-size: 20px;
 }
 a:hover{
-    color:#ffc107;
+    color:#32738F;
+	font-size: 30px;
+    font-weight: bold;
 }
 
